@@ -92,11 +92,19 @@ for i = 2*T+1 :-1:1
                 P = list(j);
                 
                 
+%                 for k = 1:nnz(Best_nodes)
+%                     if Minimax_Pass.Nodes.Opponent{P}(1) == Minimax_Pass.Nodes.Opponent{Best_nodes(k)}(1) &&...
+%                             Minimax_Pass.Nodes.Opponent{P}(2) == Minimax_Pass.Nodes.Opponent{Best_nodes(k)}(2)
+%                         Best_node = Best_nodes(k);
+%                         break
+%                     end
+%                 end
+                
                 for k = 1:nnz(Best_nodes)
-                    if Minimax_Pass.Nodes.Opponent{P}(1) == Minimax_Pass.Nodes.Opponent{Best_nodes(k)}(1) &&...
-                            Minimax_Pass.Nodes.Opponent{P}(2) == Minimax_Pass.Nodes.Opponent{Best_nodes(k)}(2)
+                    if norm(Minimax_Pass.Nodes.Opponent{Best_nodes(k)}-Minimax_Pass.Nodes.Agent{Best_nodes(k)}) < ...
+                            norm(Minimax_Pass.Nodes.Opponent{Best_node}-Minimax_Pass.Nodes.Agent{Best_node})
                         Best_node = Best_nodes(k);
-                        break
+                        %                     break
                     end
                 end
                 
@@ -108,7 +116,7 @@ for i = 2*T+1 :-1:1
         end
     else %MAX Level
         for j = 1:nnz(list)
-            %             Children_node = successors(One_Pass,list(j));
+            %             Children_node = successors(Minimax_Pass,list(j));
 
             Children_node = Minimax_Pass.Nodes.Successors{list(j)};
             
@@ -132,11 +140,19 @@ for i = 2*T+1 :-1:1
             Best_node = Best_nodes(1);
             P = list(j);
 
+%                 for k = 1:nnz(Best_nodes)
+%                     if Minimax_Pass.Nodes.Opponent{P}(1) == Minimax_Pass.Nodes.Opponent{Best_nodes(k)}(1) &&...
+%                             Minimax_Pass.Nodes.Opponent{P}(2) == Minimax_Pass.Nodes.Opponent{Best_nodes(k)}(2)
+%                         Best_node = Best_nodes(k);
+%                         break
+%                     end
+%                 end
+                
                 for k = 1:nnz(Best_nodes)
-                    if Minimax_Pass.Nodes.Opponent{P}(1) == Minimax_Pass.Nodes.Opponent{Best_nodes(k)}(1) &&...
-                            Minimax_Pass.Nodes.Opponent{P}(2) == Minimax_Pass.Nodes.Opponent{Best_nodes(k)}(2)
+                    if norm(Minimax_Pass.Nodes.Opponent{Best_nodes(k)}-Minimax_Pass.Nodes.Agent{Best_nodes(k)}) < ...
+                            norm(Minimax_Pass.Nodes.Opponent{Best_node}-Minimax_Pass.Nodes.Agent{Best_node})
                         Best_node = Best_nodes(k);
-                        break
+                        %                     break
                     end
                 end
   
@@ -156,46 +172,46 @@ end
 
 
 % %find the optimal path
-One_Pass_Node_path = 1;
-One_Pass_Best_node = 1;
+Minimax_Pass_Node_path = 1;
+Minimax_Pass_Best_node = 1;
 for i = 2:2*T+1
-    One_Pass_Best_node = Minimax_Pass.Nodes.Decision_Node(One_Pass_Best_node);
-    One_Pass_Node_path = [One_Pass_Node_path One_Pass_Best_node];
+    Minimax_Pass_Best_node = Minimax_Pass.Nodes.Decision_Node(Minimax_Pass_Best_node);
+    Minimax_Pass_Node_path = [Minimax_Pass_Node_path Minimax_Pass_Best_node];
 end
 
 % %find the optimal path
 
-for k =1:2:nnz(One_Pass_Node_path)
+for k =1:2:nnz(Minimax_Pass_Node_path)
     
-    Agent_path_x((k+1)/2) = Minimax_Pass.Nodes.Agent{One_Pass_Node_path(k)}(1);
-    Agent_path_y((k+1)/2) = Minimax_Pass.Nodes.Agent{One_Pass_Node_path(k)}(2);
+    Agent_path_x((k+1)/2) = Minimax_Pass.Nodes.Agent{Minimax_Pass_Node_path(k)}(1);
+    Agent_path_y((k+1)/2) = Minimax_Pass.Nodes.Agent{Minimax_Pass_Node_path(k)}(2);
     
-    Opponent_path_x((k+1)/2) = Minimax_Pass.Nodes.Opponent{One_Pass_Node_path(k)}(1);
-    Opponent_path_y((k+1)/2) = Minimax_Pass.Nodes.Opponent{One_Pass_Node_path(k)}(2);
+    Opponent_path_x((k+1)/2) = Minimax_Pass.Nodes.Opponent{Minimax_Pass_Node_path(k)}(1);
+    Opponent_path_y((k+1)/2) = Minimax_Pass.Nodes.Opponent{Minimax_Pass_Node_path(k)}(2);
 end
 
 Initial_Agent = [Agent_path_x(2);Agent_path_y(2)];
-% for k = 2:2:length(One_Pass_Node_path)
-%     if Initial_Agent(1) ~= Minimax_Pass.Nodes.Agent{One_Pass_Node_path(k)}(1) || Initial_Agent(2) ~= Minimax_Pass.Nodes.Agent{One_Pass_Node_path(k)}(2)
-%         Initial_Agent =  Minimax_Pass.Nodes.Agent{One_Pass_Node_path(k)};
+% for k = 2:2:length(Minimax_Pass_Node_path)
+%     if Initial_Agent(1) ~= Minimax_Pass.Nodes.Agent{Minimax_Pass_Node_path(k)}(1) || Initial_Agent(2) ~= Minimax_Pass.Nodes.Agent{Minimax_Pass_Node_path(k)}(2)
+%         Initial_Agent =  Minimax_Pass.Nodes.Agent{Minimax_Pass_Node_path(k)};
 %         break;
 %     end
 % end
-Initial_Agent_Region = Minimax_Pass.Nodes.Agent_Region{One_Pass_Node_path(3)};
+Initial_Agent_Region = Minimax_Pass.Nodes.Agent_Region{Minimax_Pass_Node_path(3)};
 
 
 Initial_Opponent = [Opponent_path_x(2);Opponent_path_y(2)];
-% for k = 3:2:length(One_Pass_Node_path)
-%     if Initial_Opponent(1) ~= Minimax_Pass.Nodes.Opponent{One_Pass_Node_path(k)}(1)  || Minimax_Pass.Nodes.Opponent{One_Pass_Node_path(k)}(2)
-%         Initial_Opponent =  Minimax_Pass.Nodes.Opponent{One_Pass_Node_path(k)};
+% for k = 3:2:length(Minimax_Pass_Node_path)
+%     if Initial_Opponent(1) ~= Minimax_Pass.Nodes.Opponent{Minimax_Pass_Node_path(k)}(1)  || Minimax_Pass.Nodes.Opponent{Minimax_Pass_Node_path(k)}(2)
+%         Initial_Opponent =  Minimax_Pass.Nodes.Opponent{Minimax_Pass_Node_path(k)};
 %         break;
 %     end
 % end
 
 
-Assets_Collected = Minimax_Pass.Nodes.Detection_Asset_Collect{One_Pass_Node_path(3)};
+Assets_Collected = Minimax_Pass.Nodes.Detection_Asset_Collect{Minimax_Pass_Node_path(3)};
 
 
 save('Save_Visibility_Data\Show_Tree.mat');
-Plot_Path_Online;
+% Plot_Path_Online;
 end

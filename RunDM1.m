@@ -114,13 +114,13 @@ for i = 2*Lookahead+1 : -1: 1
             %optimal actions of its child nodes.
             
 
-            for k = 1:nnz(Best_nodes)
-                if One_Pass.Nodes.Opponent{P}(1) == One_Pass.Nodes.Opponent{Best_nodes(k)}(1) &&...
-                        One_Pass.Nodes.Opponent{P}(2) == One_Pass.Nodes.Opponent{Best_nodes(k)}(2)
-                    Best_node = Best_nodes(k);
-                    break
-                end
-            end
+%             for k = 1:nnz(Best_nodes)
+%                 if One_Pass.Nodes.Opponent{P}(1) == One_Pass.Nodes.Opponent{Best_nodes(k)}(1) &&...
+%                         One_Pass.Nodes.Opponent{P}(2) == One_Pass.Nodes.Opponent{Best_nodes(k)}(2)
+%                     Best_node = Best_nodes(k);
+%                     break
+%                 end
+%             end
 
 
             %Test the effect of moving toward the agent when tie-breaking,
@@ -128,13 +128,13 @@ for i = 2*Lookahead+1 : -1: 1
             %part is not very straightforward, could make some strange
 %             %behaviors for the agent or the opponent.
 % 
-%             for k = 1:nnz(Best_nodes)
-%                 if norm(One_Pass.Nodes.Opponent{Best_nodes(k)}-One_Pass.Nodes.Agent{Best_nodes(k)}) < ...
-%                         norm(One_Pass.Nodes.Opponent{Best_node}-One_Pass.Nodes.Agent{Best_node})
-%                     Best_node = Best_nodes(k);
-% %                     break
-%                 end
-%             end
+            for k = 1:nnz(Best_nodes)
+                if norm(One_Pass.Nodes.Opponent{Best_nodes(k)}-One_Pass.Nodes.Agent{Best_nodes(k)}) < ...
+                        norm(One_Pass.Nodes.Opponent{Best_node}-One_Pass.Nodes.Agent{Best_node})
+                    Best_node = Best_nodes(k);
+%                     break
+                end
+            end
             
             
             
@@ -173,25 +173,25 @@ for i = 2*Lookahead+1 : -1: 1
             %The agent chose to stay if staying is among one of the
             %optimal actions of its child nodes.
             
-            for k = 1:nnz(Best_nodes)
-                if One_Pass.Nodes.Agent{P}(1) == One_Pass.Nodes.Agent{Best_nodes(k)}(1) &&...
-                        One_Pass.Nodes.Agent{P}(2) == One_Pass.Nodes.Agent{Best_nodes(k)}(2)
-                    Best_node = Best_nodes(k);
-                    break
-                end
-            end
+%             for k = 1:nnz(Best_nodes)
+%                 if One_Pass.Nodes.Agent{P}(1) == One_Pass.Nodes.Agent{Best_nodes(k)}(1) &&...
+%                         One_Pass.Nodes.Agent{P}(2) == One_Pass.Nodes.Agent{Best_nodes(k)}(2)
+%                     Best_node = Best_nodes(k);
+%                     break
+%                 end
+%             end
 
             %Test the effect of moving away from the opponent when tie-breaking,
             %because chose the appropriate heuristic weight for the opponent detection
             %part is not very straightforward, could make some strange
             %behaviors for the agent or the opponent.
-%             for k = 1:nnz(Best_nodes)
-%                 if norm(One_Pass.Nodes.Opponent{Best_nodes(k)}-One_Pass.Nodes.Agent{Best_nodes(k)}) > ...
-%                         norm(One_Pass.Nodes.Opponent{Best_node}-One_Pass.Nodes.Agent{Best_node})
-%                     Best_node = Best_nodes(k);
-% %                     break
-%                 end
-%             end
+            for k = 1:nnz(Best_nodes)
+                if norm(One_Pass.Nodes.Opponent{Best_nodes(k)}-One_Pass.Nodes.Agent{Best_nodes(k)}) > ...
+                        norm(One_Pass.Nodes.Opponent{Best_node}-One_Pass.Nodes.Agent{Best_node})
+                    Best_node = Best_nodes(k);
+%                     break
+                end
+            end
 
 
             
@@ -251,5 +251,5 @@ Initial_Opponent = [Opponent_path_x(2);Opponent_path_y(2)];
 
 Assets_Collected = One_Pass.Nodes.Assets_Collected{One_Pass_Node_path(3)};
 save('Save_Visibility_Data\Show_Tree.mat');
-Plot_Path_Online_DM1;
+% Plot_Path_Online_DM1;
 end

@@ -1,27 +1,29 @@
 epsilon = 0.000000001;  %Robustness constant
 snap_distance = 0.05;   %Snap distance (distance within which an observer location will be snapped to the
                         %boundary before the visibility polygon is computed)
-                        
-Number_of_Assets = 1;     
 
-Number_of_Experiments = 3;
+Number_of_Experiments = 20;
+USE_BaselineMinimax = false; %Use DM1, set the paprameter as "false". To compare with baseline minimax, use "true".
 
 Resolution = 1;         % 1 is a coarse grid used for computing visibility
 
 Negtive_Reward = 0.3;   % penalty for agent being detected
 Negtive_Asset = 30;     % penalty for asset being detected
 
-Lookahead = 3;          % planning horizon        
+Lookahead = 7;          % planning horizon        
 
-T_execution = 3;       % episode duration
+T_execution = 10;       % episode duration
 Discount_factor = 0.95;
 
-USE_HEURISTIC = false;         
+USE_HEURISTIC = true;         
 heur_penalty_std = 1;        % std of penalty to use for the heuristic
 heur_agent_asset_weight = 1;            % how much weight to give the asset penalty in the heuristic
 heur_agent_detection_weight = 1;     % how much weight to give the opponent detecting the agent penalty in the heuristic
 
-environment = read_vertices_from_file('./Environments/Env_A.environment');  %The environment and its boundary
+Number_of_Assets = 2;    
+Asset_set = [2 2;2 10;10 10; 10 2; 3 4; 3 8;9 4;9 8;];
+
+environment = read_vertices_from_file('./Environments/Env_B.environment');  %The environment and its boundary
 environment_min_x = min(environment{1}(:,1));
 environment_max_x = max(environment{1}(:,1));
 environment_min_y = min(environment{1}(:,2));

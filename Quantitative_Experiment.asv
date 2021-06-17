@@ -3,6 +3,7 @@ clc;
 %% Create environment
 
 set_params_quantitative; % set all parameters in this file
+USE_BaselineMinimax = false; %Use DM1, set the paprameter as "false". To compare with baseline minimax, use "true".
 
 %% For loop for experiments
 for experiment_i = 1:Number_of_Experiments
