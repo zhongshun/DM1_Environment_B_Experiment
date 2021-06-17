@@ -76,7 +76,10 @@ for experiment_i = 1:Number_of_Experiments
     %% Run the episode
     T = Lookahead;
     for step = 1:T_execution
-        
+        disp('Experiment NO.')
+        disp(experiment_i)
+        disp('step:')
+        disp(step)
         %% Build the tree
         if T_execution - step + 1  <= Lookahead
             Lookahead = T_execution - step + 1;
