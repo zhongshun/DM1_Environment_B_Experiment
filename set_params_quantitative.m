@@ -2,7 +2,7 @@ epsilon = 0.000000001;  %Robustness constant
 snap_distance = 0.05;   %Snap distance (distance within which an observer location will be snapped to the
                         %boundary before the visibility polygon is computed)
 
-Number_of_Experiments = 20;
+Number_of_Experiments = 30;
 USE_BaselineMinimax = false; %Use DM1, set the paprameter as "false". To compare with baseline minimax, use "true".
 
 Resolution = 1;         % 1 is a coarse grid used for computing visibility
