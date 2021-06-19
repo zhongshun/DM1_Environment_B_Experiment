@@ -10,7 +10,7 @@ for experiment_i = 1:Number_of_Experiments
     if ~USE_BaselineMinimax
         % Generate the location of the agent.
         while true
-            Initial_Agent = [randi([X_MIN,X_MAX]); randi([Y_MIN,Y_MAX])];
+            Initial_Agent = [randi([X_MIN+3,X_MAX-3]); randi([Y_MIN+3,Y_MAX-3])];
             if in_environment( [Initial_Agent(1),Initial_Agent(2)] , environment , epsilon )
                 break;
             end
@@ -18,7 +18,7 @@ for experiment_i = 1:Number_of_Experiments
         Record_Initial_Agent{experiment_i} = Initial_Agent;
         % Generate the location of the opponent.
         while true
-            Initial_Opponent = [randi([X_MIN,X_MAX]); randi([Y_MIN,Y_MAX])];
+            Initial_Opponent = [randi([X_MIN+3,X_MAX-3]); randi([Y_MIN+3,Y_MAX-3])];
             if in_environment( [Initial_Opponent(1),Initial_Opponent(2)] , environment , epsilon ) 
                 break;
             end
