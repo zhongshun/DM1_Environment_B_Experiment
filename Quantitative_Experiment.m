@@ -23,7 +23,7 @@ for experiment_i = 1:Number_of_Experiments
             Initial_Opponent = [randi([X_MIN,X_MAX]); randi([Y_MIN,Y_MAX])];
             if in_environment( [Initial_Opponent(1),Initial_Opponent(2)] , environment , epsilon )
                 Path = Precompute_Path{X_MAX*Initial_Agent(2)+Initial_Agent(1), X_MAX*Initial_Opponent(2)+Initial_Opponent(1)};
-                if length(Path(1,:)) <= Lookahead
+                if length(Path(1,:)) <= T_execution
                     break;
                 end
             end
@@ -40,7 +40,7 @@ for experiment_i = 1:Number_of_Experiments
                     Path = Precompute_Path{X_MAX*Initial_Opponent(2)+Initial_Opponent(1), X_MAX*Assets(k,2)+Assets(k,1)};
                     %                 if in_environment( [Assets(k,1),Assets(k,2)] , environment , epsilon )...
                     if  ~in_environment( [Assets(k,1),Assets(k,2)] , W , epsilon )...
-                            && length(Path(1,:)) <= Lookahead
+                            && length(Path(1,:)) <= T_execution
                         break;
                     end
                 end
