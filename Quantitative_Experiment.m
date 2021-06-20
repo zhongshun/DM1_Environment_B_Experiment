@@ -4,13 +4,15 @@ clc;
 
 set_params_quantitative; % set all parameters in this file
 
+Creat_Environment_Graph_Data;
+
 %% For loop for experiments
 for experiment_i = 1:Number_of_Experiments
     %% Initialization
     if ~USE_BaselineMinimax
         % Generate the location of the agent.
         while true
-            Initial_Agent = [randi([X_MIN+4,X_MAX-5]); randi([Y_MIN+4,Y_MAX-5])];
+            Initial_Agent = [randi([X_MIN,X_MAX]); randi([Y_MIN,Y_MAX])];
             if in_environment( [Initial_Agent(1),Initial_Agent(2)] , environment , epsilon )
                 break;
             end
@@ -18,9 +20,12 @@ for experiment_i = 1:Number_of_Experiments
         Record_Initial_Agent{experiment_i} = Initial_Agent;
         % Generate the location of the opponent.
         while true
-            Initial_Opponent = [randi([X_MIN+4,X_MAX-5]); randi([Y_MIN+4,Y_MAX-5])];
-            if in_environment( [Initial_Opponent(1),Initial_Opponent(2)] , environment , epsilon ) 
-                break;
+            Initial_Opponent = [randi([X_MIN,X_MAX]); randi([Y_MIN,Y_MAX])];
+            if in_environment( [Initial_Opponent(1),Initial_Opponent(2)] , environment , epsilon )
+                Path = Precompute_Path{X_MAX*Initial_Agent(2)+Initial_Agent(1), X_MAX*Initial_Opponent(2)+Initial_Opponent(1)};
+                if length(Path(1,:)) <= Lookahead 
+                    break;
+                end
             end
         end
         Record_Initial_Opponent{experiment_i} = Initial_Opponent;
@@ -30,8 +35,10 @@ for experiment_i = 1:Number_of_Experiments
         for k = 1:Number_of_Assets
             while true
                 Assets(k,:) = Asset_set(randi([1,nnz(Asset_set(:,1))]),:);
+                Path = Precompute_Path{X_MAX*Initial_Opponent(2)+Initial_Opponent(1), X_MAX*Assets(k,2)+Assets(k,1)};
                 if in_environment( [Assets(k,1),Assets(k,2)] , environment , epsilon )...
-                        && ~in_environment( [Assets(k,1),Assets(k,2)] , W , epsilon )
+                        && ~in_environment( [Assets(k,1),Assets(k,2)] , W , epsilon )...
+                        && length(Path(1,:)) <= Lookahead                       
                     break;
                 end
             end
