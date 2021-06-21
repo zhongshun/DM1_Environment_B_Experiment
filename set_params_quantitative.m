@@ -23,7 +23,7 @@ heur_agent_detection_weight = 1;     % how much weight to give the opponent dete
 Number_of_Assets = 1;    
 Asset_set = [2 2;2 10;10 10; 10 2; 3 4; 3 8;9 4;9 8;];
 
-environment = read_vertices_from_file('./Environments/Env_B.environment');  %The environment and its boundary
+environment = read_vertices_from_file('./Environments/Env_C.environment');  %The environment and its boundary
 environment_min_x = min(environment{1}(:,1));
 environment_max_x = max(environment{1}(:,1));
 environment_min_y = min(environment{1}(:,2));
