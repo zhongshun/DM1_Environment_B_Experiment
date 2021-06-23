@@ -20,7 +20,7 @@ heur_penalty_std = 1;        % std of penalty to use for the heuristic
 heur_agent_asset_weight = 1;            % how much weight to give the asset penalty in the heuristic
 heur_agent_detection_weight = 1;     % how much weight to give the opponent detecting the agent penalty in the heuristic
 
-Number_of_Assets = 1;    
+Number_of_Assets = 2;    
 Asset_set = [2 2;2 10;10 10; 10 2; 3 4; 3 8;9 4;9 8;];
 
 environment = read_vertices_from_file('./Environments/Env_C.environment');  %The environment and its boundary
