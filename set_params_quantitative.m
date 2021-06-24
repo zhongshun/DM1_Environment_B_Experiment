@@ -15,7 +15,7 @@ Lookahead = 5;          % planning horizon
 T_execution = 9;       % episode duration
 Discount_factor = 0.95;
 
-USE_HEURISTIC = flase;         
+USE_HEURISTIC = false;         
 heur_penalty_std = 1;        % std of penalty to use for the heuristic
 heur_agent_asset_weight = 1;            % how much weight to give the asset penalty in the heuristic
 heur_agent_detection_weight = 1;     % how much weight to give the opponent detecting the agent penalty in the heuristic
