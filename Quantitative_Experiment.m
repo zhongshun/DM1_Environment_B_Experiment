@@ -36,6 +36,7 @@ for experiment_i = 1:Number_of_Experiments
         for k = 1:Number_of_Assets
             for q = 1:1000
                 Assets(k,:) = Asset_set(randi([1,nnz(Asset_set(:,1))]),:);
+                Asset_index(k) = 1;
                 break;
 %                 Assets(k,:) = [randi([X_MIN,X_MAX]); randi([Y_MIN,Y_MAX])];
 %                 if in_environment( [Assets(k,1),Assets(k,2)] , environment , epsilon )

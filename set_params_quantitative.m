@@ -12,7 +12,7 @@ Negtive_Asset = 30;     % penalty for asset being detected
 
 Lookahead = 4;          % planning horizon        
 
-T_execution = 9;       % episode duration
+T_execution = 40;       % episode duration
 Discount_factor = 0.95;
 
 USE_HEURISTIC = false;         
