@@ -6,9 +6,9 @@ environment_min_x = min(environment{1}(:,1));
 environment_max_x = max(environment{1}(:,1));
 environment_min_y = min(environment{1}(:,2));
 environment_max_y = max(environment{1}(:,2));
-X_MIN = floor(environment_min_x-0.1*(environment_max_x-environment_min_x));
+X_MIN = max(0,floor(environment_min_x-0.1*(environment_max_x-environment_min_x)));
 X_MAX = floor(environment_max_x+0.1*(environment_max_x-environment_min_x));
-Y_MIN = floor(environment_min_y-0.1*(environment_max_y-environment_min_y));
+Y_MIN = max(0,floor(environment_min_y-0.1*(environment_max_y-environment_min_y)));
 Y_MAX = floor(environment_max_y+0.1*(environment_max_y-environment_min_y));     
                                 
 Number_of_Asset = size(Asset,1);
