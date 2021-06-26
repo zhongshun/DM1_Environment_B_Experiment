@@ -35,16 +35,17 @@ for experiment_i = 1:Number_of_Experiments
         W{1} = visibility_polygon( Initial_Opponent , environment , epsilon, snap_distance);
         for k = 1:Number_of_Assets
             for q = 1:1000
-                %                 Assets(k,:) = Asset_set(randi([1,nnz(Asset_set(:,1))]),:);
-                Assets(k,:) = [randi([X_MIN,X_MAX]); randi([Y_MIN,Y_MAX])];
-                if in_environment( [Assets(k,1),Assets(k,2)] , environment , epsilon )
-                    Path = Precompute_Path{X_MAX*Initial_Opponent(2)+Initial_Opponent(1), X_MAX*Assets(k,2)+Assets(k,1)};
-                    %                 if in_environment( [Assets(k,1),Assets(k,2)] , environment , epsilon )...
-                    if  ~in_environment( [Assets(k,1),Assets(k,2)] , W , epsilon )...
-                            && length(Path(1,:)) <= T_execution
-                        Asset_index(k) = 1;
-                        break;
-                    end
+                Assets(k,:) = Asset_set(randi([1,nnz(Asset_set(:,1))]),:);
+                break;
+%                 Assets(k,:) = [randi([X_MIN,X_MAX]); randi([Y_MIN,Y_MAX])];
+%                 if in_environment( [Assets(k,1),Assets(k,2)] , environment , epsilon )
+%                     Path = Precompute_Path{X_MAX*Initial_Opponent(2)+Initial_Opponent(1), X_MAX*Assets(k,2)+Assets(k,1)};
+%                     %                 if in_environment( [Assets(k,1),Assets(k,2)] , environment , epsilon )...
+%                     if  ~in_environment( [Assets(k,1),Assets(k,2)] , W , epsilon )...
+%                             && length(Path(1,:)) <= T_execution
+%                         Asset_index(k) = 1;
+%                         break;
+%                     end
                 end
             end
         end
