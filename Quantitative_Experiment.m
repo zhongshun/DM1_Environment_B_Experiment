@@ -46,7 +46,7 @@ for experiment_i = 1:Number_of_Experiments
 %                         Asset_index(k) = 1;
 %                         break;
 %                     end
-                end
+%                 end
             end
         end
         Record_Assets{experiment_i} = Assets;
