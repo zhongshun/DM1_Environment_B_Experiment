@@ -10,9 +10,9 @@ Resolution = 1;         % 1 is a coarse grid used for computing visibility
 Negtive_Reward = 0.3;   % penalty for agent being detected
 Negtive_Asset = 30;     % penalty for asset being detected
 
-Lookahead = 4;          % planning horizon        
+Lookahead = 5;          % planning horizon        
 
-T_execution = 70;       % episode duration
+T_execution = 40;       % episode duration
 Discount_factor = 0.95;
 
 USE_HEURISTIC = false;         
@@ -21,10 +21,10 @@ heur_agent_asset_weight = 1;            % how much weight to give the asset pena
 heur_agent_detection_weight = 1;     % how much weight to give the opponent detecting the agent penalty in the heuristic
 
 Number_of_Assets = 2;    
-% Asset_set = [2 2;2 10;10 10; 10 2; 3 4; 3 8;9 4;9 8;];%Environment B
-Asset_set = [5 7;10 4;14 4; 10 10; 14 10; 16 4;17 4;16 10; 17 10;16 12;];%Environment B
+Asset_set = [2 2;2 10;10 10; 10 2; 3 4; 3 8;9 4;9 8;];%Environment B
+%Asset_set = [5 7;10 4;14 4; 10 10; 14 10; 16 4;17 4;16 10; 17 10;16 12;];%Environment B
 
-environment = read_vertices_from_file('./Environments/Env_C.environment');  %The environment and its boundary
+environment = read_vertices_from_file('./Environments/Env_B.environment');  %The environment and its boundary
 environment_min_x = min(environment{1}(:,1));
 environment_max_x = max(environment{1}(:,1));
 environment_min_y = min(environment{1}(:,2));
