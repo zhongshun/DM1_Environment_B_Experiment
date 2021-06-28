@@ -29,7 +29,7 @@ Asset_set = [4,19;9,19;12,19;17,19;20,19;25,19;28,19;33,19;36,19;49,19;...
     4,5;9,5;12,5;17,5;20,5;25,5;28,5;33,5;36,5;49,5;...
     4,2;9,2;12,2;17,2;20,2;25,2;28,2;33,2;36,2;49,2]; %Environment D
 
-environment = read_vertices_from_file('./Environments/Env_D.environment');  %The environment and its boundary
+environment = read_vertices_from_file('./Environments/Env_A.environment');  %The environment and its boundary
 environment_min_x = min(environment{1}(:,1));
 environment_max_x = max(environment{1}(:,1));
 environment_min_y = min(environment{1}(:,2));
