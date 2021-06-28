@@ -10,9 +10,9 @@ Resolution = 1;         % 1 is a coarse grid used for computing visibility
 Negtive_Reward = 0.3;   % penalty for agent being detected
 Negtive_Asset = 30;     % penalty for asset being detected
 
-Lookahead = 4;          % planning horizon        
+Lookahead = 6;          % planning horizon        
 
-T_execution = 140;       % episode duration
+T_execution = 24;       % episode duration
 Discount_factor = 0.95;
 
 USE_HEURISTIC = false;         
@@ -20,7 +20,8 @@ heur_penalty_std = 1;        % std of penalty to use for the heuristic
 heur_agent_asset_weight = 1;            % how much weight to give the asset penalty in the heuristic
 heur_agent_detection_weight = 1;     % how much weight to give the opponent detecting the agent penalty in the heuristic
 
-Number_of_Assets = 8;    
+Number_of_Assets = 1;    
+% Asset_set = [2 5;8 5;5 1;];%Environment A
 % Asset_set = [2 2;2 10;10 10; 10 2; 3 4; 3 8;9 4;9 8;];%Environment B
 %Asset_set = [5 7;10 4;14 4; 10 10; 14 10; 16 4;17 4;16 10; 17 10;16 12;];%Environment C
 Asset_set = [4,19;9,19;12,19;17,19;20,19;25,19;28,19;33,19;36,19;49,19;...
