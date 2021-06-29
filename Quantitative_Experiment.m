@@ -34,10 +34,17 @@ for experiment_i = 1:Number_of_Experiments
         % Generate the location of all the assets.
         W{1} = visibility_polygon( Initial_Opponent , environment , epsilon, snap_distance);
         for k = 1:Number_of_Assets
+            if k > 1
+                V_asset1{1} = visibility_polygon(  Assets(1,:) , environment , epsilon, snap_distance);
+            else
+                V_asset1 = environment;
+            end
             for q = 1:1000
                 Assets(k,:) = Asset_set(randi([1,nnz(Asset_set(:,1))]),:);
                 Asset_index(k) = 1;
-                break;
+                if in_environment( [Assets(k,1),Assets(k,2)] , V_asset1 , epsilon )
+                    break;
+                end
 %                 Assets(k,:) = [randi([X_MIN,X_MAX]); randi([Y_MIN,Y_MAX])];
 %                 if in_environment( [Assets(k,1),Assets(k,2)] , environment , epsilon )
 %                     Path = Precompute_Path{X_MAX*Initial_Opponent(2)+Initial_Opponent(1), X_MAX*Assets(k,2)+Assets(k,1)};
@@ -101,7 +108,8 @@ for experiment_i = 1:Number_of_Experiments
             end
             
             Tree_Agent = BuildMinimaxTree_BF2(Initial_Agent,Initial_Opponent,Initial_Agent_Region,Assets,...
-                Assets_Collected,environment,Lookahead,Negtive_Reward,Negtive_Asset,Visibility_Data,Region,Assets_Detected_Agent,Asset_Visibility_Data,Visibility_in_environment,step,Resolution,Discount_factor,epsilon);
+                Assets_Collected,environment,Lookahead,Negtive_Reward,Negtive_Asset,Visibility_Data,Region,...
+                Assets_Detected_Agent,Asset_Visibility_Data,Visibility_in_environment,step,Resolution,Discount_factor,epsilon);
             
             %% Run the DM1 One Pass to back propagate the reward values
             % Change RunDM1 to RunLeafLookAhed or RunMinimax_multi_assets to run
