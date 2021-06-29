@@ -20,7 +20,7 @@ heur_penalty_std = 1;        % std of penalty to use for the heuristic
 heur_agent_asset_weight = 1;            % how much weight to give the asset penalty in the heuristic
 heur_agent_detection_weight = 1;     % how much weight to give the opponent detecting the agent penalty in the heuristic
 
-Number_of_Assets = 6;    
+Number_of_Assets = 10;    
 % Asset_set = [2 5;8 5;5 1;];%Environment A
 % Asset_set = [2 2;2 10;10 10; 10 2; 3 4; 3 8;9 4;9 8;];%Environment B
 Asset_set = [5 7;10 4;14 4; 10 10; 14 10; 16 4;17 4;16 10; 17 10;16 12;];%Environment C
